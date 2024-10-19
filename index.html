@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>HTML 5 Boilerplate</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="expensetracker">
+        <div class="headerinfo">
+            <div class="filter"><label>Filter by content:</label>
+             <select class="categoryselect" onchange="filtering()">
+                <option>all</option>
+                <option>food</option>
+                <option>travel</option>
+                <option>education</option>
+                <option>beauty</option>
+                <option>donation</option>
+                <option>others</option>
+            </select>
+
+            </div>
+            <button class="addexpense" onclick="addexpense()">Add Expense</button>
+
+        </div>
+        <div class="wholedetails">
+         <table class="table">
+             <tr class="rows">
+                 <th class="title">Expense Title</th>
+                 <th class="title">Category</th>
+                 <th class="title">Date</th>
+                 <th class="title">Amount</th>
+                 <th class="title">Action</th>
+
+             </tr>
+         </table>
+         </div>
+         <div class="input">
+             <table >
+                 <tr>
+                     <th><h6>Expense Title</h6></th>
+                     <th><input class='expensetitle' placeholder="Expense Title" /></th>
+
+                 </tr>
+                 <tr>
+                     <th><h6>Category</h6></th>
+                     <th>
+                         <select class="categoryselectinput">
+                             <option>all</option>
+                             <option>food</option>
+                             <option>travel</option>
+                             <option>education</option>
+                             <option>beauty</option>
+                             <option>donation</option>
+                             <option>others</option>
+                         </select>
+                     </th>
+
+                 </tr>
+                 <tr>
+                     <th><h6>Date</h6></th>
+                     <th><input class='date' type="datetime-local" /></th>
+
+                 </tr>
+                 <tr>
+                     <th><h6>Amount</h6></th>
+                     <th><input class='amount' placeholder="Amount" type="number"/></th>
+
+                 </tr>
+                 <tr>
+                     <th><button class="submit" onclick="submit()">Submit</button></th>
+                     <th><button onclick="cancel()">Cancel</button></th>
+
+
+                 </tr>
+             </table>
+         </div>
+        <div class="bottomdetails">
+            <div class="totalexpense">Total:0</div>
+        </div>
+    </div>
+    <style>
+        * {
+            font-family: 'Arial', sans-serif; /* Replace 'Arial' with any font you prefer */
+            box-sizing: border-box; /* Ensure padding and border are included in the element's total width/height */
+            margin: 0;
+            padding: 0;
+        }
+
+        html, body {
+            width: 100%;
+            overflow-x: auto; /* Ensure the body and HTML can scroll horizontally */
+            overflow-y: auto;
+        }
+
+        body {
+            margin-top: 15px;
+        }
+
+        .headerinfo {
+            display: flex;
+            margin-top: 15px;
+            gap: 5px;
+            justify-content: space-around;
+            background-color: antiquewhite;
+            padding-top: 15px;
+        }
+
+            .headerinfo .addexpense {
+                display: inline;
+                height: 50px;
+                width: 150px;
+                background-color: greenyellow;
+                border: 2px solid greenyellow;
+                border-radius: 15px;
+                color: aliceblue;
+                font-size: 18px;
+            }
+
+            .headerinfo .filter {
+                display: inline-block;
+                height: 50px;
+                width: 150px;
+                background-color: greenyellow;
+                border: 2px solid greenyellow;
+                border-radius: 15px;
+                color: aliceblue;
+            }
+
+        .filter label {
+            font-size: 18px;
+            padding-left: 12px;
+        }
+
+        .filter .categoryselect {
+            display: inline-block;
+            height: 25px;
+            width: 130px;
+            margin-left: 11px;
+            background-color: greenyellow;
+            color: aliceblue;
+            border: 2px solid black;
+        }
+
+        .wholedetails {
+            margin-top: 5px;
+            display: flex;
+            justify-content: center;
+            border: solid;
+            background-color: antiquewhite;
+            overflow-x: auto; /* Ensure horizontal scrolling is allowed */
+            overflow-y: auto;
+        }
+
+            .wholedetails .title {
+                font-size: 25px;
+            }
+
+        .input {
+            display: flex;
+            position: fixed;
+            top: 250px;
+            left: 40%;
+            background-color: antiquewhite;
+            border: 2px solid black;
+            border-radius: 5px;
+            justify-content: center;
+            height: 300px;
+            display: none;
+        }
+
+        .totalexpense {
+            color: white;
+            word-wrap: break-word;
+            max-width: 80px;
+        }
+
+        .bottomdetails {
+            display: flex;
+            background-color: greenyellow;
+            width: 130px;
+            border-radius: 15px;
+            margin-top: 30px;
+            padding-left: 15px;
+            padding-top: 1px;
+            border: 2px solid black;
+            min-height: 50px;
+            margin-left: 20px;
+        }
+
+        .trfunc th {
+            word-wrap: break-word;
+            max-width: 250px;
+            min-width: 250px;
+        }
+
+        .title {
+            min-width: 250px;
+        }
+
+        @media screen and (max-width: 500px) {
+            .input {
+                position: unset;
+                width: 300px;
+                height: 300px;
+                margin-left: 10%;
+                margin-top: 10px;
+            }
+
+            .rows {
+                display: flex;
+                padding: 0px;
+                justify-content: space-between;
+            }
+
+            .trfunc {
+                display: flex;
+                padding: 0px;
+                justify-content: space-between;
+            }
+
+                .trfunc th {
+                    display: inline-block;
+                    font-size: 12px;
+                    min-width: 80px;
+                    max-width: 80px;
+                    word-wrap: break-word;
+                    margin-left: 10px;
+                }
+
+            .headerinfo {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .wholedetails {
+                min-height: 100px;
+                min-width: 100%;
+                overflow-x: scroll;
+            }
+
+                .wholedetails .title {
+                    font-size: 12px;
+                    min-width: 80px;
+                    max-width: 80px;
+                    word-wrap: break-word;
+                    margin-left: 10px;
+                }
+        }
+
+    </style>
+    <script>
+        const input = document.querySelector('.input')
+        let initialamount = 0
+
+        function addexpense() {
+            input.style.display = 'flex'
+            resetInputFields()
+        }
+        function resetInputFields() {
+            document.querySelector('.expensetitle').value = '';
+            document.querySelector('.categoryselectinput').value = 'all';
+            document.querySelector('.date').value = '';
+            document.querySelector('.amount').value = '';
+        }
+        //appending values on main
+        function submit() {
+            const expensetitle = document.querySelector('.expensetitle')
+            const categoryselectinput = document.querySelector('.categoryselectinput')
+            const date = document.querySelector('.date')
+            const amount = document.querySelector('.amount')
+            const table = document.querySelector('.table')
+
+
+            var tr = document.createElement('tr')
+            tr.setAttribute('class', 'trfunc')
+            var th1 = document.createElement('th')
+            th1.innerHTML = expensetitle.value
+            var th2 = document.createElement('th')
+            th2.innerHTML = categoryselectinput.value
+            var th3 = document.createElement('th')
+            th3.innerHTML = date.value
+            if (!expensetitle.value && !amount.value) {
+                alert("Please fill out all fields.");
+                return;
+            }
+            var th4 = document.createElement('th')
+            let amountvalue = amount.value || 0
+            th4.innerHTML = amountvalue
+
+            tr.appendChild(th1)
+            tr.appendChild(th2)
+            tr.appendChild(th3)
+            tr.appendChild(th4)
+
+
+
+            //Action buttons
+            var th5 = document.createElement('th')
+            var editbutton = document.createElement('button')
+            var removebutton = document.createElement('button')
+            editbutton.innerHTML = 'Edit'
+            removebutton.innerHTML = 'Remove'
+            th5.appendChild(editbutton)
+            th5.appendChild(removebutton)
+
+            //see the .table and .trfunc is already created on the above function so i need change the name of variable.
+            tr.appendChild(th5)
+            table.appendChild(tr)
+
+            //auto closing input addexpense field
+            input.style.display = 'none'
+            //remove
+            removebutton.addEventListener('click', removes)
+            function removes() {
+                tr.remove();
+                totalexpensefunc()
+
+            }
+            //edit
+            editbutton.addEventListener('click', edits)
+            function edits(event) {
+                let respectiverow = event.target.closest('tr')
+                let columns = respectiverow.querySelectorAll('th')
+                input.style.display = 'flex'
+
+                expensetitle.value = columns[0].textContent
+                categoryselectinput.value = columns[1].textContent
+                date.value = columns[2].textContent
+                amount.value = columns[3].textContent
+                respectiverow.remove()
+
+            }
+
+            //total expense
+
+            function totalexpensefunc() {
+                const totalexpense = document.querySelector('.totalexpense')
+
+                let rows = document.querySelectorAll('.table tr')
+                initialamount = 0;
+                for (i = 1; i < rows.length; i++) {
+
+                    let column = rows[i].querySelectorAll('th')[3]
+                    let amountextcontent = column.textContent
+                    initialamount += parseFloat(amountextcontent);
+
+
+
+
+                }
+
+                totalexpense.textContent = 'Total:' + initialamount
+
+
+
+
+            }
+            totalexpensefunc()
+        }
+
+
+
+
+
+
+
+        function cancel() {
+            input.style.display = 'none'
+        }
+
+
+        //filter by categories
+        const categoryselect = document.querySelector('.categoryselect')
+
+        if (categoryselect) {
+            filtering()
+        }
+
+        function filtering() {
+            const categoryselect = document.querySelector('.categoryselect')
+            const table = document.querySelector('.table')
+            const row = document.querySelectorAll('.table tr')
+            for (i = 1; i < row.length; i++) {
+                let cell = row[i].querySelectorAll('th')[1]
+                let categorytext = cell.textContent
+                if (categoryselect.value == 'all' || categoryselect.value == categorytext) {
+                    row[i].style.display = '';
+                }
+                else {
+                    row[i].style.display = 'none';
+
+                }
+
+            }
+
+
+        }
+    </script>
+</body>
+</html>
