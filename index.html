@@ -28,7 +28,7 @@
         <div class="wholedetails">
          <table class="table">
              <tr class="rows">
-                 <th class="title">Expense Title</th>
+                 <th class="title">Expense</th>
                  <th class="title">Category</th>
                  <th class="title">Date</th>
                  <th class="title">Amount</th>
@@ -208,10 +208,12 @@
                 margin-left: 10%;
                 margin-top: 10px;
             }
+            .table{
 
-            .rows {
+            }
+
+          .rows {
                 display: flex;
-                padding: 0px;
                 justify-content: space-between;
             }
 
@@ -224,29 +226,32 @@
                 .trfunc th {
                     display: inline-block;
                     font-size: 12px;
-                    min-width: 80px;
-                    max-width: 80px;
+                    min-width: 60px;
+                    max-width: 60px;
                     word-wrap: break-word;
-                    margin-left: 10px;
+                    margin: 0px;
+                    padding: 0px;
                 }
 
             .headerinfo {
                 flex-direction: column;
                 align-items: center;
+                margin: 0px;
+                
             }
 
             .wholedetails {
-                min-height: 100px;
-                min-width: 100%;
                 overflow-x: scroll;
             }
 
                 .wholedetails .title {
                     font-size: 12px;
-                    min-width: 80px;
-                    max-width: 80px;
+                    min-width:60px;
+                    max-width: 60px;
                     word-wrap: break-word;
-                    margin-left: 10px;
+                    margin: 0px;
+                    padding: 0px;
+                    overflow-x: scroll;
                 }
         }
 
